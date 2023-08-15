@@ -46,7 +46,7 @@ const PodcastView = () => {
     },
     {
       header: (
-        <Box justifyContent="center" display="flex">
+        <Box justifyContent="center" display="flex" component="span">
           <Clock />
         </Box>
       ),
