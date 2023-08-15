@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  align-items: center;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.control-btn {
+  width: 2rem;
+  height: 2rem;
+}
+
+.progress-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 200px;
+}
