@@ -9,11 +9,12 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { PodcastColumn } from "../models/podcast";
+import { PodcastSearchColumn } from "../models/podcast";
+import { PodcastCollectionColumn } from "../models/collection";
 import "./Table.css";
 
 interface TableProps {
-  columns: PodcastColumn[];
+  columns: PodcastSearchColumn[] | PodcastCollectionColumn[];
   rows: any[];
 }
 
