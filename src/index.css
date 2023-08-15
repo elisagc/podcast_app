@@ -5,6 +5,7 @@ body {
 }
 
 body {
+  font-family: "Quicksand";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -13,4 +14,27 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
+
+#main-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+#content {
+  width: 832px;
+  min-width: 200px;
+}
+
+#header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+#footer {
+  display: flex;
+  flex-wrap: wrap;
 }
