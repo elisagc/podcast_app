@@ -1,5 +1,7 @@
 .card-container {
   display: flex;
+  min-width: 250px;
+  max-width: 350px;
 }
 
 .card-data {
@@ -13,5 +15,5 @@
 .card-img {
   width: 100px;
   height: 100px;
-  object-fit: "cover";
+  object-fit: cover;
 }
