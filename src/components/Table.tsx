@@ -9,12 +9,10 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { PodcastSearchColumn } from "../models/podcast";
-import { PodcastCollectionColumn } from "../models/collection";
-import "./Table.css";
+import { PodcastColumn } from "../models/podcast";
 
 interface TableProps {
-  columns: PodcastSearchColumn[] | PodcastCollectionColumn[];
+  columns: PodcastColumn[];
   rows: any[];
 }
 
@@ -31,13 +29,13 @@ interface TableLabelProps {
 
 export const TableCard = ({ uri, title, subtitle }: TableCardProps) => {
   return (
-    <Box className="card-container">
+    <Box display="flex" gap={2} alignItems="center">
       <Avatar src={uri} variant="rounded" />
       <Box>
+        <Typography className="ellipsis one">{title}</Typography>
         <Typography className="ellipsis one" variant="body2">
-          {title}
+          {subtitle}
         </Typography>
-        <Typography className="ellipsis one">{subtitle}</Typography>
       </Box>
     </Box>
   );
@@ -45,7 +43,7 @@ export const TableCard = ({ uri, title, subtitle }: TableCardProps) => {
 
 export const TableLabel = ({ label, className }: TableLabelProps) => {
   return (
-    <Typography variant="body1" className={className}>
+    <Typography variant="body2" className={className} maxWidth={250}>
       {label}
     </Typography>
   );
@@ -59,7 +57,7 @@ const Table = ({ columns, rows }: TableProps) => {
           <TableRow>
             {columns.map((column, index) => (
               <TableCell key={index}>
-                <Typography variant="body1">{column.header}</Typography>
+                <Typography variant="body2">{column.header}</Typography>
               </TableCell>
             ))}
           </TableRow>
@@ -73,7 +71,9 @@ const Table = ({ columns, rows }: TableProps) => {
               }}
             >
               {columns.map((column, index) => (
-                <TableCell key={index}>{column.render(row)}</TableCell>
+                <TableCell width={column.width} key={index}>
+                  {column.render({ row, index: rowIndex })}
+                </TableCell>
               ))}
             </TableRow>
           ))}
