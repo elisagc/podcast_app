@@ -1,0 +1,22 @@
+.hero-img-container {
+  display: flex;
+  align-items: center;
+}
+
+.hero-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-content {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2;
+}
+
+.hero-selector {
+  display: flex;
+  align-items: center;
+}
