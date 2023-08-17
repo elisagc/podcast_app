@@ -23,7 +23,7 @@ const getPodcastEpisodes = async ({
   limit = 10,
 }: CollectionParams) => {
   const response = await api.get<PodcastResponse>(
-    `/lookup?id=${collectionId}&country=US&media=podcast&entity=podcastEpisode&limit=${limit}`
+    `/lookup?id=${collectionId}&media=podcast&entity=podcastEpisode&limit=${limit}`
   );
 
   return response.data.results;
