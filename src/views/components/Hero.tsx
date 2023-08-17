@@ -30,6 +30,7 @@ const Hero = ({ podCast }: { podCast: PodcastEpisode }) => {
           align="center"
           fontWeight="bold"
           className="ellipsis one"
+          maxWidth={500}
         >
           {podCast && podCast.trackName}
         </Typography>
