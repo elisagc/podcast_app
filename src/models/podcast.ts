@@ -2,90 +2,69 @@ import { ReactNode } from "react";
 
 export interface PodcastResponse {
   resultCount: number;
-  results: Podcast[];
+  results: PodcastSearch[] | PodcastEpisode[];
 }
-
-export interface Podcast {
-  wrapperType: WrapperType;
-  kind: Kind;
-  collectionId?: number;
+export interface PodcastSearch {
+  wrapperType: string;
+  kind: string;
+  artistId?: number;
+  collectionId: number;
   trackId: number;
   artistName: string;
-  collectionName?: string;
+  collectionName: string;
   trackName: string;
-  collectionCensoredName?: string;
+  collectionCensoredName: string;
   trackCensoredName: string;
-  collectionArtistId?: number;
-  collectionArtistViewUrl?: string;
-  collectionViewUrl?: string;
+  artistViewUrl?: string;
+  collectionViewUrl: string;
+  feedUrl: string;
   trackViewUrl: string;
-  previewUrl: string;
   artworkUrl30: string;
   artworkUrl60: string;
   artworkUrl100: string;
-  collectionPrice?: number;
-  trackPrice?: number;
-  collectionHdPrice?: number;
-  trackHdPrice?: number;
+  collectionPrice: number;
+  trackPrice: number;
+  collectionHdPrice: number;
   releaseDate: string;
-  collectionExplicitness: Explicitness;
-  trackExplicitness: Explicitness;
-  trackCount?: number;
-  trackNumber?: number;
+  collectionExplicitness: string;
+  trackExplicitness: string;
+  trackCount: number;
   trackTimeMillis: number;
-  country: Country;
-  currency: Currency;
+  country: string;
+  currency: string;
   primaryGenreName: string;
-  contentAdvisoryRating?: ContentAdvisoryRating;
+  contentAdvisoryRating: string;
+  artworkUrl600: string;
+  genreIds: string[];
+  genres: string[];
+}
+export interface PodcastEpisode extends PodcastSearch {
+  episodeContentType?: string;
+  episodeFileExtension?: string;
+  closedCaptioning?: string;
+  previewUrl?: string;
+  episodeGuid?: string;
+  description?: string;
   shortDescription?: string;
-  longDescription?: string;
-  hasITunesExtras?: boolean;
-  artistId?: number;
-  artistViewUrl?: string;
-  discCount?: number;
-  discNumber?: number;
-  isStreamable?: boolean;
-  trackRentalPrice?: number;
-  trackHdRentalPrice?: number;
-  collectionArtistName?: CollectionArtistName;
+  artistIds?: number[];
+  episodeUrl?: string;
 }
 
-export enum CollectionArtistName {
-  JackJohnson = "Jack Johnson",
-  TomRussell = "Tom Russell",
-  VariousArtists = "Various Artists",
+interface Row {
+  row: PodcastSearch | PodcastEpisode;
+  index: number;
 }
-
-export enum Explicitness {
-  Explicit = "explicit",
-  NotExplicit = "notExplicit",
-}
-
-export enum ContentAdvisoryRating {
-  PG = "PG",
-  PG13 = "PG-13",
-  R = "R",
-  Unrated = "Unrated",
-}
-
-export enum Country {
-  Usa = "USA",
-}
-
-export enum Currency {
-  Usd = "USD",
-}
-
-export enum Kind {
-  FeatureMovie = "feature-movie",
-  Song = "song",
-}
-
-export enum WrapperType {
-  Track = "track",
-}
-
 export interface PodcastColumn {
+  width?: string | number;
   header: string | ReactNode;
-  render: (row: Podcast) => ReactNode;
+  render: (row: Row) => ReactNode;
+}
+
+export interface PodcastValues {
+  podcastSearchList: PodcastSearch[] | null;
+  podcastEpisodesList: PodcastEpisode[];
+  setSearchTerm: (x: string) => void;
+  setPodcastSelectedId: (x: number) => void;
+  podcastSelectedId: number | undefined;
+  loading: boolean;
 }
