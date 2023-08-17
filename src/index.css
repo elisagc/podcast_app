@@ -37,4 +37,23 @@ body {
 #footer {
   display: flex;
   flex-wrap: wrap;
+  min-height: 100px;
+}
+
+/* COMMON */
+.ellipsis {
+  white-space: initial;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.one {
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+
+.two {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }

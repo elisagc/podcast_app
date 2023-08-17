@@ -1,29 +1,42 @@
-import { IconButton } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { format } from "date-fns";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ReactComponent as Pause } from "../assets/media/pause.svg";
 import { ReactComponent as Play } from "../assets/media/play.svg";
-import podcastData from "../assets/podcast.json";
-import "../components/MediaPlayer.css";
+
+import "../components/Player/AudioPlayer.css";
+import { Control } from "../components/Player/Controls";
 import Table, { TableCard, TableLabel } from "../components/Table";
+import { PATH_EPISODE } from "../contants";
+import { usePodcast } from "../hooks/usePodcast";
 import { PodcastColumn } from "../models/podcast";
 
 const PodcastSearch = () => {
+  const { podcastSearchList, setPodcastSelectedId, podcastSelectedId } =
+    usePodcast();
+  const navigate = useNavigate();
+
+  const handleSelectPodcast = (id: number) => () => {
+    setPodcastSelectedId(id);
+    navigate(PATH_EPISODE);
+  };
+
   const columns: PodcastColumn[] = [
     {
       header: "#",
-      render: () => (
-        <IconButton
-          component={Link}
-          to={"/podcast-view"}
-          className="control-btn"
-        >
-          <Play />
-        </IconButton>
-      ),
+
+      render: ({ row: { collectionId, trackId } }) => {
+        const isSelectedPodcast = trackId === podcastSelectedId;
+        return (
+          <Control isSmall onClick={handleSelectPodcast(trackId)}>
+            {isSelectedPodcast ? <Pause /> : <Play />}
+          </Control>
+        );
+      },
     },
     {
       header: "Name",
-      render: ({ artworkUrl100, trackName, artistName }) => (
+      render: ({ row: { artworkUrl100, trackName, artistName } }) => (
         <TableCard
           uri={artworkUrl100}
           title={trackName}
@@ -33,19 +46,36 @@ const PodcastSearch = () => {
     },
     {
       header: "Description",
-      render: (row) => (
-        <TableLabel label={row.shortDescription} className="ellipsis two" />
+      render: ({ row }) => (
+        <TableLabel
+          label={row.trackCensoredName ?? "No description provided"}
+          className="ellipsis two"
+        />
       ),
     },
+
     {
       header: "Released",
-      render: (row) => (
+      render: ({ row }) => (
         <TableLabel label={format(new Date(row.releaseDate), "dd/MM/yy")} />
       ),
     },
   ];
 
-  return <Table columns={columns} rows={podcastData.results} />;
+  if (!podcastSearchList) {
+    return (
+      <Box>
+        <Typography variant="h4" align="center">
+          Start listening to the best podcasts
+        </Typography>
+        <Typography variant="h6" align="center">
+          Please search your favorite podcast
+        </Typography>
+      </Box>
+    );
+  }
+
+  return <Table columns={columns} rows={podcastSearchList} />;
 };
 
 export default PodcastSearch;
