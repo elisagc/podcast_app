@@ -1,33 +1,38 @@
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import GuardRoute from "./components/Guard";
+import { PATH_EPISODE, PATH_SEARCH } from "./contants";
+import { PlayerProvider } from "./context/PlayerContext";
+import { PodcastProvider } from "./context/PodcastContext";
+import PodcastEpisodes from "./pages/PodcastEpisodes";
 import PodcastSearch from "./pages/PodcastSearch";
-import PodcastCollection from "./pages/PodcastCollection";
 import theme from "./theme";
 import Footer from "./views/Footer";
 import Header from "./views/Header";
-import { PodcastProvider } from "./context/PodcastContext";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+
       <BrowserRouter>
         <PodcastProvider>
-          <div id="main-container">
-            <div id="content">
-              <Header />
-              <Routes>
-                <Route path="/podcast-search" element={<PodcastSearch />} />
-                <Route
-                  path="/podcast-collection"
-                  element={<PodcastCollection />}
-                />
-                <Route path="*" element={<Navigate to="/podcast-search" />} />
-              </Routes>
+          <PlayerProvider>
+            <div id="main-container">
+              <div id="content">
+                <Header />
+                <GuardRoute>
+                  <Routes>
+                    <Route path={PATH_SEARCH} element={<PodcastSearch />} />
+                    <Route path={PATH_EPISODE} element={<PodcastEpisodes />} />
+                    <Route path="*" element={<Navigate to={PATH_SEARCH} />} />
+                  </Routes>
+                </GuardRoute>
+              </div>
             </div>
-          </div>
-          <Footer />
+            <Footer />
+          </PlayerProvider>
         </PodcastProvider>
       </BrowserRouter>
     </ThemeProvider>
