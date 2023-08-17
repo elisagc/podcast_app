@@ -4,13 +4,13 @@ const theme = createTheme({
   typography: {
     fontFamily: "Quicksand",
     body1: {
-      fontWeight: 600,
-      fontSize: "0.875rem",
-      color: "rgba(255, 255, 255, 0.3)",
-    },
-    body2: {
       fontWeight: 500,
       fontSize: "1rem",
+    },
+    body2: {
+      fontWeight: 600,
+      fontSize: "0.875rem",
+      color: "#5a5a5a",
     },
   },
   palette: {
