@@ -1,12 +1,23 @@
 import { Box } from "@mui/material";
-import MediaPlayer from "../components/MediaPlayer";
-import Card from "../components/Card";
+import AudioPlayer from "../components/Player/AudioPlayer";
+import { usePlayer } from "../hooks/usePlayer";
+import FooterCard from "./components/FooterCard";
 
 const Footer = () => {
+  const {
+    playList: [podcast],
+  } = usePlayer();
+
   return (
     <Box id="footer" bgcolor="background.paper">
-      <Card title="Título" subtitle="subtitulo" uri="https://cataas.com/cat" />
-      <MediaPlayer />
+      <FooterCard
+        {...(podcast && {
+          uri: podcast.artworkUrl100,
+          subtitle: podcast.collectionName,
+          title: podcast.artistName,
+        })}
+      />
+      <AudioPlayer />
     </Box>
   );
 };
