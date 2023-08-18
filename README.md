@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# Podcast App Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Podcast App is a web application that allows users to search for and listen to podcasts available on iTunes. It's built using React and TypeScript, and use Axios for fetching data from the iTunes API. Material-UI is used for a modern and responsive user interface.
 
-## Available Scripts
+## Demo
 
-In the project directory, you can run:
+https://podcast-app-elisagc.vercel.app/podcast-search
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Search Podcasts**: Users can search for podcasts by entering keywords in the search bar. The app will display relevant results from the iTunes API.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Podcast Episodes**: Once selected a podcast, the app lists the episodes in a user-friendly and responsive format. Users can see details such as episode title, topic and released.
 
-### `npm test`
+- **Audio Player**: Users can click on a podcast or an episode to start playing it. The audio player should display details and allow users to listen to the selected episode.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+- React: JavaScript library for building user interfaces.
+- TypeScript: Superset of JavaScript that adds static types.
+- Axios: Promise-based HTTP client for making API requests.
+- Material-UI: React UI framework for building modern, responsive designs.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Folder Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `src/`: Contains the main source code for the application.
+- `assets/`: Static assets such as images and icons.
+- `components/`: Reusable React components used throughout the app.
+- `constants/`: Constants used in the application.
+- `api/`: API service functions using Axios for data fetching.
+- `context/`: React context providers for global state management.
+- `hooks/`: Custom hooks used across the app.
+- `models/`: TypeScript interfaces and models.
+- `pages/`: Top-level pages/routes of the application.
+- `views/`: Higher-level components that combine smaller components for specific views.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+Follow these steps to get the project up and running on your local machine:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Clone the Repository**: Clone this repository to your local machine using the following command and navigate to the project directory:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+  git clone https://github.com/elisagc/podcast_app.git
+  cd podcast_app
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Install Dependencies**: Install the necessary dependencies using the following command:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+  yarn install
+```
 
-## Learn More
+**Run the App**: Start the development server by running the following command:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  yarn start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Open your web browser** and visit `http://localhost:3000` to access the Podcast App.
