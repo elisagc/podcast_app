@@ -10,10 +10,12 @@ import Table, { TableCard, TableLabel } from "../components/Table";
 import { PATH_EPISODE } from "../contants";
 import { usePodcast } from "../hooks/usePodcast";
 import { PodcastColumn } from "../models/podcast";
+import { usePlayer } from "../hooks/usePlayer";
 
 const PodcastSearch = () => {
   const { podcastSearchList, setPodcastSelectedId, podcastSelectedId } =
     usePodcast();
+  const { isPlaying } = usePlayer();
   const navigate = useNavigate();
 
   const handleSelectPodcast = (id: number) => () => {
@@ -25,11 +27,11 @@ const PodcastSearch = () => {
     {
       header: "#",
 
-      render: ({ row: { collectionId, trackId } }) => {
+      render: ({ row: { trackId } }) => {
         const isSelectedPodcast = trackId === podcastSelectedId;
         return (
           <Control isSmall onClick={handleSelectPodcast(trackId)}>
-            {isSelectedPodcast ? <Pause /> : <Play />}
+            {isSelectedPodcast ? isPlaying ? <Pause /> : <Play /> : <Play />}
           </Control>
         );
       },
