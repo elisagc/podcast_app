@@ -4,7 +4,7 @@ The Podcast App is a web application that allows users to search for and listen 
 
 ## Demo
 
-https://podcast-app-elisagc.vercel.app/podcast-search
+https://podcast-app-xi.vercel.app
 
 ## Features
 
